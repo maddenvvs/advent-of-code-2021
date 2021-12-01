@@ -1,7 +1,7 @@
 from aoc2021.solutions.day_01 import first_task, second_task, parse_entries
 
 
-def test_first_task():
+def test_first_task() -> None:
     test_entries = parse_entries(
         """199
 200
@@ -18,7 +18,7 @@ def test_first_task():
     assert first_task(test_entries) == 7
 
 
-def test_second_task():
+def test_second_task() -> None:
     test_entries = parse_entries(
         """199
 200

@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, Type
 
 from .solution import Solution
 from .day_01 import Day01
@@ -28,7 +28,7 @@ from .day_01 import Day01
 # from .day_24 import Day24
 # from .day_25 import Day25
 
-all_solutions: List = [
+all_solutions: list[Type[Solution]] = [
     Day01,
     # Day02,
     # Day03,
