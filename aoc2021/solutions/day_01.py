@@ -5,26 +5,19 @@ def parse_entries(text: str) -> list[int]:
     return [int(i) for i in text.split()]
 
 
+def count_window_increases(arr: list[int], window_size: int) -> int:
+    if len(arr) <= window_size:
+        return 0
+
+    return sum(arr[i] > arr[i - window_size] for i in range(window_size, len(arr)))
+
+
 def first_task(depths: list[int]) -> int:
-    if len(depths) < 2:
-        return 0
-
-    return sum(depths[i] > depths[i - 1] for i in range(1, len(depths)))
+    return count_window_increases(depths, 1)
 
 
-def second_task(depths: list[int], window_size: int = 3) -> int:
-    if len(depths) <= window_size:
-        return 0
-
-    curr_window = sum(depths[i] for i in range(window_size))
-    next_window, increases = curr_window, 0
-
-    for i in range(window_size, len(depths)):
-        next_window += depths[i] - depths[i - window_size]
-        increases += next_window > curr_window
-        curr_window = next_window
-
-    return increases
+def second_task(depths: list[int]) -> int:
+    return count_window_increases(depths, 3)
 
 
 class Day01(Solution):
