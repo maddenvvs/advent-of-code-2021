@@ -1,4 +1,4 @@
-from aoc2021.solutions.day_02 import first_task, second_task
+from aoc2021.day_02 import first_task, second_task
 
 
 def test_first_task() -> None:
