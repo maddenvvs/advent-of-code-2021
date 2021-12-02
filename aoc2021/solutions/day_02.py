@@ -2,8 +2,6 @@ from dataclasses import dataclass
 from functools import reduce
 from typing import Iterable, NamedTuple
 
-from .solution import Solution
-
 
 class Command(NamedTuple):
     operation: str
@@ -51,23 +49,11 @@ def parse_program(text: str) -> Iterable[Command]:
         yield Command(operation, value)
 
 
-def first_task(program: Iterable[Command]) -> int:
-    state = reduce(first_reducer, program, SubmarineState())
+def first_task(program_text: str) -> int:
+    state = reduce(first_reducer, parse_program(program_text), SubmarineState())
     return state.position * state.depth
 
 
-def second_task(program: Iterable[Command]) -> int:
-    state = reduce(second_reducer, program, SubmarineState())
+def second_task(program_text: str) -> int:
+    state = reduce(second_reducer, parse_program(program_text), SubmarineState())
     return state.position * state.depth
-
-
-class Day02(Solution):
-    def first_task(self, entries_text: str) -> str:
-        entries = parse_program(entries_text)
-
-        return str(first_task(entries))
-
-    def second_task(self, entries_text: str) -> str:
-        entries = parse_program(entries_text)
-
-        return str(second_task(entries))

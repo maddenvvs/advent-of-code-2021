@@ -1,64 +1,19 @@
-from typing import Optional, Type
-
-from .solution import Solution
-from .day_01 import Day01
-from .day_02 import Day02
-
-# from .day_03 import Day03
-# from .day_04 import Day04
-# from .day_05 import Day05
-# from .day_06 import Day06
-# from .day_07 import Day07
-# from .day_08 import Day08
-# from .day_09 import Day09
-# from .day_10 import Day10
-# from .day_11 import Day11
-# from .day_12 import Day12
-# from .day_13 import Day13
-# from .day_14 import Day14
-# from .day_15 import Day15
-# from .day_16 import Day16
-# from .day_17 import Day17
-# from .day_18 import Day18
-# from .day_19 import Day19
-# from .day_20 import Day20
-# from .day_21 import Day21
-# from .day_22 import Day22
-# from .day_23 import Day23
-# from .day_24 import Day24
-# from .day_25 import Day25
-
-all_solutions: list[Type[Solution]] = [
-    Day01,
-    Day02,
-    # Day03,
-    # Day04,
-    # Day05,
-    # Day06,
-    # Day07,
-    # Day08,
-    # Day09,
-    # Day10,
-    # Day11,
-    # Day12,
-    # Day13,
-    # Day14,
-    # Day15,
-    # Day16,
-    # Day17,
-    # Day18,
-    # Day19,
-    # Day20,
-    # Day21,
-    # Day22,
-    # Day23,
-    # Day24,
-    # Day25,
-]
+from typing import Optional, Protocol, cast
+from importlib import import_module
 
 
-def get_solution(day: int) -> Optional[Solution]:
-    if day > len(all_solutions):
+class SupportsSolutions(Protocol):
+    def first_task(self, text: str) -> str:
+        ...
+
+    def second_task(self, text: str) -> str:
+        ...
+
+
+def get_solution(day: int) -> Optional[SupportsSolutions]:
+    try:
+        return cast(
+            SupportsSolutions, import_module(f".day_{day:02}", "aoc2021.solutions")
+        )
+    except ModuleNotFoundError:
         return None
-
-    return all_solutions[day - 1]()
