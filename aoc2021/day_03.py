@@ -5,20 +5,25 @@ def parse_diagnostic_report(report_text: str) -> list[str]:
     return report_text.split("\n")
 
 
-def find_power_consumption(report: list[str]) -> int:
-    n = len(report)
-    bits = len(report[0])
-    freq = [0] * bits
-
-    for line in report:
-        for i, ch in enumerate(line):
-            freq[i] += ch == "1"
-
+def find_gamma_rate(report: list[str]) -> int:
+    n, bits = len(report), len(report[0])
     gamma_rate = 0
-    for v in freq:
-        gamma_rate *= 2
-        gamma_rate += 2 * v > n
 
+    for bit_pos in range(bits):
+        ones = 0
+        for line in report:
+            ones += line[bit_pos] == "1"
+
+        gamma_rate *= 2
+        gamma_rate += 2 * ones > n
+
+    return gamma_rate
+
+
+def find_power_consumption(report: list[str]) -> int:
+    bits = len(report[0])
+
+    gamma_rate = find_gamma_rate(report)
     epsilon_rate = ~gamma_rate & ((1 << bits) - 1)
 
     return gamma_rate * epsilon_rate
