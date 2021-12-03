@@ -6,16 +6,16 @@ def parse_diagnostic_report(report_text: str) -> list[str]:
 
 
 def find_gamma_rate(report: list[str]) -> int:
-    n, bits = len(report), len(report[0])
+    lines_count, bits_count = len(report), len(report[0])
     gamma_rate = 0
 
-    for bit_pos in range(bits):
+    for bit_pos in range(bits_count):
         ones = 0
         for line in report:
             ones += line[bit_pos] == "1"
 
         gamma_rate *= 2
-        gamma_rate += 2 * ones > n
+        gamma_rate += 2 * ones > lines_count
 
     return gamma_rate
 
@@ -31,21 +31,21 @@ def find_power_consumption(report: list[str]) -> int:
 
 def find_element(report: list[str], decider: Callable[[int, int, int], bool]) -> str:
     bits = len(report[0])
-    l, r = 0, len(report)
+    left, right = 0, len(report)
 
     for bit_pos in range(bits):
         zeroes = 0
-        for i in range(l, r):
+        for i in range(left, right):
             if report[i][bit_pos] == "0":
-                report[l + zeroes], report[i] = report[i], report[l + zeroes]
+                report[left + zeroes], report[i] = report[i], report[left + zeroes]
                 zeroes += 1
 
-        if decider(l, r, zeroes):
-            r = l + zeroes
+        if decider(left, right, zeroes):
+            right = left + zeroes
         else:
-            l = l + zeroes
+            left = left + zeroes
 
-    return report[l]
+    return report[left]
 
 
 def oxygen_generator_rating(report: list[str]) -> int:
