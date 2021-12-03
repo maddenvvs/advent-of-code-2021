@@ -29,7 +29,7 @@ def find_power_consumption(report: list[str]) -> int:
     return gamma_rate * epsilon_rate
 
 
-def find_element(report: list[str], decider: Callable[[int, int, int], bool]) -> str:
+def find_element(report: list[str], decider: Callable[[int, int], bool]) -> str:
     bits = len(report[0])
     left, right = 0, len(report)
 
@@ -40,7 +40,7 @@ def find_element(report: list[str], decider: Callable[[int, int, int], bool]) ->
                 report[left + zeroes], report[i] = report[i], report[left + zeroes]
                 zeroes += 1
 
-        if decider(left, right, zeroes):
+        if decider(right - left, zeroes):
             right = left + zeroes
         else:
             left = left + zeroes
@@ -49,11 +49,11 @@ def find_element(report: list[str], decider: Callable[[int, int, int], bool]) ->
 
 
 def oxygen_generator_rating(report: list[str]) -> int:
-    return int(find_element(report, lambda l, r, zeroes: zeroes * 2 > (r - l)), base=2)
+    return int(find_element(report, lambda total, zeroes: zeroes * 2 > total), base=2)
 
 
 def co2_scrubber_rating(report: list[str]) -> int:
-    return int(find_element(report, lambda l, r, zeroes: zeroes * 2 <= (r - l)), base=2)
+    return int(find_element(report, lambda total, zeroes: zeroes * 2 <= total), base=2)
 
 
 def calculate_life_support_rating(report: list[str]) -> int:
