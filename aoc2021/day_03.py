@@ -40,7 +40,7 @@ def find_element(report: list[str], decider: Callable[[int, int], bool]) -> str:
                 report[left + zeroes], report[i] = report[i], report[left + zeroes]
                 zeroes += 1
 
-        if decider(right - left, zeroes):
+        if decider(zeroes, right - left - zeroes):
             right = left + zeroes
         else:
             left = left + zeroes
@@ -49,11 +49,11 @@ def find_element(report: list[str], decider: Callable[[int, int], bool]) -> str:
 
 
 def oxygen_generator_rating(report: list[str]) -> int:
-    return int(find_element(report, lambda total, zeroes: zeroes * 2 > total), base=2)
+    return int(find_element(report, lambda zeroes, ones: zeroes > ones), base=2)
 
 
 def co2_scrubber_rating(report: list[str]) -> int:
-    return int(find_element(report, lambda total, zeroes: zeroes * 2 <= total), base=2)
+    return int(find_element(report, lambda zeroes, ones: zeroes <= ones), base=2)
 
 
 def calculate_life_support_rating(report: list[str]) -> int:
