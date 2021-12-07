@@ -5,7 +5,7 @@ TEST_FISHES = """3,4,3,1,2"""
 
 
 @pytest.mark.parametrize(
-    "days,expected",
+    "days,expected_fishes",
     [
         (1, 5),
         (2, 6),

@@ -33,3 +33,10 @@ repos:
 
         # Exclude day 2 solution because mypy doesn't support pattern matching
         exclude: "day_02"
+
+    -   id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true
