@@ -11,7 +11,19 @@ $ pip install --editable .
 
 Run solution for day 7:
 ```sh
-$ aoc2021 7 ../input/day-07.input
+$ aoc2021 7 ./input/day-07.input
+```
+
+By default, it tries to look into `./input/` directory for specified day input.
+Thus, the preceding command can be simplified:
+
+```sh
+$ aoc2021 7
+```
+
+Run all unit tests
+```sh
+$ pytest
 ```
 
 Run unit tests for day 03:
