@@ -19,12 +19,13 @@ def count_fishes_1d(days):
 
 
 def count_fishes_iterative(days):
-    fishes_dp = [1] * 9
+    order = 9
+    fishes = [1] * order
 
     for day in range(1, days + 1):
-        fishes_dp[day % 9] = fishes_dp[(day - 7) % 9] + fishes_dp[(day - 9) % 9]
+        fishes[day % order] = fishes[(day - 7) % order] + fishes[(day - 9) % order]
 
-    return fishes_dp[days % 9]
+    return fishes[days % order]
 
 
 def number_of_fishes(fishes: list[int], days: int) -> int:
