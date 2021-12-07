@@ -1,8 +1,8 @@
 #!/bin/sh
 
-DECEMBER_FIRST=$(date -j '113000002021' +%s)
+DECEMBER_FIRST=$(date -j '120100002021' +%s)
 TODAY=$(date +%s)
-DAYS_PAST=$((($TODAY - $DECEMBER_FIRST)/(3600*24)))
+DAYS_PAST=$((($TODAY - $DECEMBER_FIRST)/(3600*24) + 1))
 if (($DAYS_PAST > 25)); then
     $DAYS_PAST=25
 fi
