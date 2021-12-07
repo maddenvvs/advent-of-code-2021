@@ -27,8 +27,8 @@ TEST_FISHES = """3,4,3,1,2"""
         (18, 26),
     ],
 )
-def test_number_of_fishes(days, expected) -> None:
-    assert number_of_fishes(parse_fishes(TEST_FISHES), days) == expected
+def test_number_of_fishes(days: int, expected_fishes: int) -> None:
+    assert number_of_fishes(parse_fishes(TEST_FISHES), days) == expected_fishes
 
 
 def test_first_task() -> None:

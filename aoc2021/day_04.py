@@ -1,9 +1,17 @@
+from __future__ import annotations
+
+
 class Board:
+    numbers: list[list[int]]
+    numbers_sum: int
+    marked_sum: int
+    positions: dict[int, tuple[int, int]]
+
     def __init__(self, numbers: list[list[int]]):
         self.numbers = numbers
         self.numbers_sum = 0
         self.marked_sum = 0
-        self.positions = dict()
+        self.positions = {}
 
         for i, row in enumerate(numbers):
             for j, num in enumerate(row):
@@ -34,7 +42,7 @@ class Board:
         return False
 
     @classmethod
-    def parse(cls, board_text: str):
+    def parse(cls, board_text: str) -> Board:
         numbers = [list(map(int, line.split())) for line in board_text.split("\n")]
         return cls(numbers)
 
@@ -59,7 +67,7 @@ class Bingo:
         return len(self.boards)
 
     @classmethod
-    def parse(cls, boards_text: str):
+    def parse(cls, boards_text: str) -> Bingo:
         boards_list = [Board.parse(b) for b in boards_text.split("\n\n")]
         return cls(boards_list)
 
@@ -88,7 +96,7 @@ class Simulation:
         return self.find_kth_winning_score(self.game.boards_count)
 
     @classmethod
-    def parse(cls, game_text: str):
+    def parse(cls, game_text: str) -> Simulation:
         delimiter_pos = game_text.find("\n\n")
         drawn_numbers = [int(i) for i in game_text[:delimiter_pos].split(",")]
         game = Bingo.parse(game_text[delimiter_pos + 2 :])

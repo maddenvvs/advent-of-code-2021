@@ -3,7 +3,8 @@
     Bentley–Ottmann algorithm (O((n + k)log(n))). Unfortunately, I'm unable
     to implement it (yet).
 """
-from typing import NamedTuple
+from __future__ import annotations
+from typing import NamedTuple, Generator
 from collections import Counter
 
 
@@ -12,7 +13,7 @@ class Point(NamedTuple):
     y: int
 
     @classmethod
-    def parse(cls, point_text: str):
+    def parse(cls, point_text: str) -> Point:
         return cls(*map(int, point_text.split(",")))
 
 
@@ -25,14 +26,14 @@ class Line(NamedTuple):
         return self.start.y == self.end.y
 
     @property
-    def is_vertical(self):
+    def is_vertical(self) -> bool:
         return self.start.x == self.end.x
 
     @property
-    def is_diagonal(self):
+    def is_diagonal(self) -> bool:
         return not (self.is_horizontal or self.is_vertical)
 
-    def __iter__(self):
+    def __iter__(self) -> Generator[Point, None, None]:
         if self.is_diagonal:
             d_x, d_y = ((1, 1), (1, -1))[self.start.y > self.end.y]
         else:
@@ -45,7 +46,7 @@ class Line(NamedTuple):
         yield current_point
 
     @classmethod
-    def parse(cls, line_text: str):
+    def parse(cls, line_text: str) -> Line:
         start, end = line_text.split(" -> ")
         start_point = Point.parse(start)
         end_point = Point.parse(end)
@@ -58,8 +59,8 @@ def parse_lines(lines_text: str) -> list[Line]:
     return [Line.parse(l) for l in lines_text.split("\n")]
 
 
-def count_intersections(lines: list[Line]) -> int:
-    counter = Counter()
+def count_intersections(lines: Generator[Line, None, None]) -> int:
+    counter: dict[Point, int] = Counter()
     for line in lines:
         for point in line:
             counter[point] += 1

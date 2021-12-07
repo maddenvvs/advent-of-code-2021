@@ -2,7 +2,7 @@ from functools import cache
 
 
 @cache
-def count_fishes_2d(fish, days):
+def count_fishes_2d(fish: int, days: int) -> int:
     if fish >= days:
         return 1
 
@@ -11,14 +11,14 @@ def count_fishes_2d(fish, days):
 
 
 @cache
-def count_fishes_1d(days):
+def count_fishes_1d(days: int) -> int:
     if days < 1:
         return 1
 
     return count_fishes_1d(days - 7) + count_fishes_1d(days - 9)
 
 
-def count_fishes_iterative(days):
+def count_fishes_iterative(days: int) -> int:
     order = 9
     fishes = [1] * order
 
