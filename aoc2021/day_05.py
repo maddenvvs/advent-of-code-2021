@@ -1,3 +1,8 @@
+"""
+    This problem can be solved in many ways. The optimal one AFAIK is using
+    Bentley–Ottmann algorithm (O((n + k)log(n))). Unfortunately, I'm unable
+    to implement it (yet).
+"""
 from typing import NamedTuple
 from collections import Counter
 
