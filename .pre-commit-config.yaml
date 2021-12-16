@@ -9,8 +9,12 @@ repos:
         language: system
         types: [python]
 
-        # Exclude day 2 solution because black doesn't support pattern matching
-        exclude: "day_02"
+        # Exclude some solutions because black doesn't support pattern matching
+        exclude: |
+            (?x)^(
+                aoc2021/day_02.py|
+                aoc2021/day_16.py
+            )$
 
 
     -   id: pylint
@@ -27,12 +31,16 @@ repos:
 
     -   id: mypy
         name: mypy
-        entry: mypy
+        entry: mypy --show-traceback
         language: system
         types: [python]
 
-        # Exclude day 2 solution because mypy doesn't support pattern matching
-        exclude: "day_02"
+        # Exclude some solutions because black doesn't support pattern matching
+        exclude: |
+            (?x)^(
+                aoc2021/day_02.py|
+                aoc2021/day_16.py
+            )$
 
     -   id: pytest
         name: pytest
