@@ -11,7 +11,7 @@ iniconfig==1.1.1
 isort==5.10.1
 lazy-object-proxy==1.6.0
 mccabe==0.6.1
-mypy==0.910
+mypy==0.920
 mypy-extensions==0.4.3
 nodeenv==1.6.0
 packaging==21.3
@@ -20,7 +20,7 @@ platformdirs==2.4.0
 pluggy==1.0.0
 pre-commit==2.16.0
 py==1.11.0
-pylint==2.12.1
+pylint==2.12.2
 pyparsing==3.0.6
 pytest==6.2.5
 PyYAML==6.0
