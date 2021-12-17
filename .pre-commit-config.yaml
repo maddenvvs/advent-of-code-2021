@@ -35,11 +35,16 @@ repos:
         language: system
         types: [python]
 
-        # Exclude some solutions because black doesn't support pattern matching
+        # Exclude some solutions because mypy doesn't support pattern matching.
+        # Also, I exclude tests for these solutions. The reason is mypy type
+        # checker follows imported modules (in case of tests, they import solutions
+        # with unsupported pattern matching).
         exclude: |
             (?x)^(
                 aoc2021/day_02.py|
-                aoc2021/day_16.py
+                tests/test_day_02.py|
+                aoc2021/day_16.py|
+                tests/test_day_16.py
             )$
 
     -   id: pytest
