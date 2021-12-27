@@ -32,3 +32,10 @@ $ pytest tests/test_day_03.py
 ```
 
 Thanks for amazing competition, [@ericwastl](https://twitter.com/ericwastl)!
+
+
+## Useful links
+- [Reddit](https://www.reddit.com/r/adventofcode/)
+- [Highly optimized solutions in Rust](https://www.reddit.com/r/adventofcode/comments/rozxsb/aoc_2021_highlyoptimized_solutions_in_rust_17ms/)
+- [Optimized solutions in Nim](https://www.reddit.com/r/adventofcode/comments/rpl2yx/2021_nim_nim_is_beautiful_all_days_in_130ms/)
+- [AoC Adveture Time](https://www.reddit.com/r/adventofcode/comments/ro2v1c/introducing_your_aoc_2021_adventure_time/)
