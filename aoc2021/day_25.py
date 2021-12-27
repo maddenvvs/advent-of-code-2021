@@ -28,11 +28,11 @@ class Region:
         return "\n".join("".join(line) for line in grid)
 
     def update_positions(
-        self, cucumbers: set[Position], pos_diff: Position
+        self, cucumbers: set[Position], move: Position
     ) -> tuple[set[Position], bool]:
         has_changes = False
         new_set = set()
-        row_diff, col_diff = pos_diff
+        row_diff, col_diff = move
 
         for pos in cucumbers:
             new_pos = ((pos[0] + row_diff) % self.rows, (pos[1] + col_diff) % self.cols)
@@ -44,8 +44,8 @@ class Region:
         return new_set, has_changes
 
     def simulate_step(self) -> bool:
-        self.east, east_changes = self.update_positions(self.east, (0, 1))
-        self.south, south_changes = self.update_positions(self.south, (1, 0))
+        self.east, east_changes = self.update_positions(self.east, move=(0, 1))
+        self.south, south_changes = self.update_positions(self.south, move=(1, 0))
 
         return east_changes or south_changes
 
