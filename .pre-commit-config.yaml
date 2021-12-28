@@ -13,7 +13,8 @@ repos:
         exclude: |
             (?x)^(
                 aoc2021/day_02.py|
-                aoc2021/day_16.py
+                aoc2021/day_16.py|
+                aoc2021/day_24.py
             )$
 
 
@@ -44,7 +45,9 @@ repos:
                 aoc2021/day_02.py|
                 tests/test_day_02.py|
                 aoc2021/day_16.py|
-                tests/test_day_16.py
+                tests/test_day_16.py|
+                aoc2021/day_24.py|
+                tests/test_day_24.py
             )$
 
     -   id: pytest
